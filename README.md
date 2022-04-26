@@ -1,2 +1,2 @@
-# game1
+# Mr. Stick
 First game project
