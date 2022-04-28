@@ -1,0 +1,73 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Press+Start+2P&family=Yeseva+One&display=swap');
+
+/* Initizlize CSS*/
+:root {
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Canvas Area*/
+#canvas {
+  display: block;
+  border: 6px solid green;
+  margin: 7% auto;
+  width: 1000px;
+  height: 550px;
+}
+
+/* Text on Start Screen*/
+.game-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  margin: 25% 20%;
+  padding: 0 50px;
+}
+
+h1 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 5rem;
+  font-weight: lighter;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.3rem;
+  font-weight: lighter;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  padding-bottom: 1.5rem;
+}
+
+span {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+i {
+  font-size: 1.4rem;
+  font-weight: 300;
+} 
+
+.hidden {
+  display: none;
+}
+
+button {
+  width: 6rem;
+  height: 3rem;
+  margin: 0 auto;
+  border: none;
+  outline: none; 
+}
