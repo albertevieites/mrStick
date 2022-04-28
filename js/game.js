@@ -60,8 +60,8 @@ class Game {
   // generateObstacle() to create the enemies every x frame
   generateEnemies() {
     if (this.frameId > 100) {
-      if (this.frameId % 150 === 0) {
-        console.log(" 🟥 Enemy generated!!!");
+      if (this.frameId % 200 === 0) {
+        //console.log(" 🟥 Enemy generated!!!");
         this.enemies.push(
           new Enemies(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height)
         );
@@ -76,7 +76,7 @@ class Game {
     // Check the position of the player ...
     this.enemies.forEach((enemy) => {
       if (
-        ((this.player.x + this.player.width >= enemy.x) && (this.player.x <= enemy.x + enemy.x) && (this.player.y + this.player.height >= enemy.y) && (this.player.y <= enemy.y + enemy.height)
+        ((this.player.x + (this.player.width / 2 - 20) >= enemy.x) && (this.player.x <= enemy.x + enemy.width*0.9 - 20) && (this.player.y + this.player.height >= enemy.y) && (this.player.y <= enemy.y + enemy.height)
         ) ){
         console.log(" 🤯 Colision!!!");
       }
