@@ -5,7 +5,7 @@ class Enemies {
     this.height = 298;
     this.img = new Image();
     this.img.src = "../images/flame-thrower.png";
-    this.speedX = -2;
+    this.speedX = -3;
     this.speedY = 0;
     this.x = x0 - this.width + 800;
     this.y = y0 - 80;

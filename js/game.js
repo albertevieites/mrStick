@@ -62,8 +62,8 @@ class Game {
 
   // generateObstacle() to create the obstacles every x frame
   generateObstacles() {
-    if (this.frameId > 100) {
-      if (this.frameId % 400 === 0) {
+    if (this.frameId > 10) {
+      if (this.frameId % 200 === 0) {
         //console.log(" 🟥 Obstacle generated!!!");
         this.obstacles.push(
           new Obstacles(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height)
@@ -75,7 +75,7 @@ class Game {
   // generateEnemies() to create the enemies every x frame
   generateEnemies() {
     if (this.frameId > 100) {
-      if (this.frameId % 800 === 0) {
+      if (this.frameId % 700 === 0) {
         //console.log(" ☠️ Enemies generated!!!");
         this.enemies.push(
           new Enemies(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height)
@@ -93,10 +93,10 @@ class Game {
     // Check the position of the player ...
     this.obstacles.forEach((obstacle) => {
       if (
-        this.player.x + (this.player.width / 2 - 20) >= obstacle.x &&
-        this.player.x <= obstacle.x + (obstacle.width * 0.6 - 20) &&
-        this.player.y + (this.player.height / 2 - 20) >= obstacle.y &&
-        this.player.y <= obstacle.y + (obstacle.height * 0.6 - 20) / 2
+        this.player.x + (this.player.width / 2 - 30) >= obstacle.x &&
+        this.player.x <= obstacle.x + (obstacle.width * 0.7 - 30) &&
+        this.player.y + (this.player.height / 2 - 60) >= obstacle.y &&
+        this.player.y <= obstacle.y + (obstacle.height * 0.9 - 20) / 2
       ) {
         console.log("Obstacle 🤯 Colision!!!");
         this.isOver = true;
@@ -112,12 +112,13 @@ class Game {
     this.enemies.forEach((enemy, index) => {
       if (
         this.player.x + (this.player.width / 2 - 20) >= enemy.x &&
-        this.player.x <= enemy.x + (enemy.width * 0.5 - 20) &&
-        this.player.y + this.player.height >= enemy.y &&
-        this.player.y <= enemy.y - enemy.height * 0.5
+        this.player.x <= enemy.x + (enemy.width * 0.7 - 20) &&
+        this.player.y + (this.player.height - 79) >= enemy.y &&
+        this.player.y <= enemy.y + enemy.height
       ) {
-        console.log(" Enemy 🤯 Colision!!!");
-        this.isOver = true;
+        // console.log(" Enemy 🤯 Colision!!!");
+        this.enemies.nurses.splice(indexNurse, 1);
+        // this.isOver = true;
       }
     });
   }
@@ -126,16 +127,18 @@ class Game {
     cancelAnimationFrame(this.frameId);
     this.frameId = null;
     this.ctx.save();
-    this.ctx.fillStyle = "rgba(0,0,0,0.3)";
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.font = "bold 54px 'Press Start 2P'";
+    this.ctx.font = "bold 64px 'Press Start 2P'";
     this.ctx.fillText(
       `LOOOSER!!!`,
       this.ctx.canvas.width / 2,
-      this.ctx.canvas.height / 1.9
+      this.ctx.canvas.height / 2
     );
+    this.sounds.play("gameOver");
+    this.sounds.pause("main");
     this.ctx.restore();
   }
 
@@ -144,6 +147,7 @@ class Game {
     // reseting & refreshing background & player
     this.background = new Background(this.ctx);
     this.player = new Player(this.ctx);
+    this.sounds.play("main");
   }
 
   // play() invoke the logic and order to load every method
