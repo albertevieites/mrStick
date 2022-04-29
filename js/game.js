@@ -117,7 +117,7 @@ class Game {
         this.player.y <= enemy.y + enemy.height
       ) {
         // console.log(" Enemy 🤯 Colision!!!");
-        this.enemies.nurses.splice(indexNurse, 1);
+        this.enemies.splice(index, 1);
         // this.isOver = true;
       }
     });
