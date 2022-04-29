@@ -3,10 +3,13 @@ class Game {
   ctx = null; // Context
   frameId = null; // Value to initialize number of frame
   background = null; // Default Background
+  sounds = new Sounds();
   player = null; // Default Player
   startButton = document.getElementById("start-button"); // Get class from button element
   textSplash = document.querySelector("#startDiv");
+  obstacles = [];
   enemies = [];
+  isOver = false;
 
   // init() INITIALIZATION METHOD
   // Get context and adjust screen to fill the window calling to setCanvasToFullScreen() method
@@ -57,11 +60,23 @@ class Game {
     });
   }
 
-  // generateObstacle() to create the enemies every x frame
+  // generateObstacle() to create the obstacles every x frame
+  generateObstacles() {
+    if (this.frameId > 100) {
+      if (this.frameId % 400 === 0) {
+        //console.log(" 🟥 Obstacle generated!!!");
+        this.obstacles.push(
+          new Obstacles(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height)
+        );
+      }
+    }
+  }
+
+  // generateEnemies() to create the enemies every x frame
   generateEnemies() {
     if (this.frameId > 100) {
-      if (this.frameId % 200 === 0) {
-        //console.log(" 🟥 Enemy generated!!!");
+      if (this.frameId % 800 === 0) {
+        //console.log(" ☠️ Enemies generated!!!");
         this.enemies.push(
           new Enemies(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height)
         );
@@ -72,15 +87,56 @@ class Game {
   // checkCollisions() to check collisions between player and enemies
   checkCollisions() {
     // Filtering ...
-    this.enemies = this.enemies.filter((enemy) => enemy.x + enemy.width > 0);
+    this.obstacles = this.obstacles.filter(
+      (obstacle) => obstacle.x + obstacle.width > 0
+    );
     // Check the position of the player ...
-    this.enemies.forEach((enemy) => {
+    this.obstacles.forEach((obstacle) => {
       if (
-        ((this.player.x + (this.player.width / 2 - 20) >= enemy.x) && (this.player.x <= enemy.x + enemy.width*0.9 - 20) && (this.player.y + this.player.height >= enemy.y) && (this.player.y <= enemy.y + enemy.height)
-        ) ){
-        console.log(" 🤯 Colision!!!");
+        this.player.x + (this.player.width / 2 - 20) >= obstacle.x &&
+        this.player.x <= obstacle.x + (obstacle.width * 0.6 - 20) &&
+        this.player.y + (this.player.height / 2 - 20) >= obstacle.y &&
+        this.player.y <= obstacle.y + (obstacle.height * 0.6 - 20) / 2
+      ) {
+        console.log("Obstacle 🤯 Colision!!!");
+        this.isOver = true;
       }
     });
+  }
+
+  // checkEnemiesCollisions
+  checkEnemiesCollisions() {
+    // Filtering ...
+    this.enemies = this.enemies.filter((enemy) => enemy.x + enemy.width > 0);
+    // Check the position of the player ...
+    this.enemies.forEach((enemy, index) => {
+      if (
+        this.player.x + (this.player.width / 2 - 20) >= enemy.x &&
+        this.player.x <= enemy.x + (enemy.width * 0.5 - 20) &&
+        this.player.y + this.player.height >= enemy.y &&
+        this.player.y <= enemy.y - enemy.height * 0.5
+      ) {
+        console.log(" Enemy 🤯 Colision!!!");
+        this.isOver = true;
+      }
+    });
+  }
+
+  gameOver() {
+    cancelAnimationFrame(this.frameId);
+    this.frameId = null;
+    this.ctx.save();
+    this.ctx.fillStyle = "rgba(0,0,0,0.3)";
+    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.ctx.fillStyle = "white";
+    this.ctx.textAlign = "center";
+    this.ctx.font = "bold 54px 'Press Start 2P'";
+    this.ctx.fillText(
+      `LOOOSER!!!`,
+      this.ctx.canvas.width / 2,
+      this.ctx.canvas.height / 1.9
+    );
+    this.ctx.restore();
   }
 
   // reset() to change between screens
@@ -92,13 +148,19 @@ class Game {
 
   // play() invoke the logic and order to load every method
   play() {
+    this.background.move(this.frameId);
     this.background.draw(this.frameId);
     this.player.move(this.frameId);
+    this.generateObstacles();
     this.generateEnemies();
+    this.obstacles.forEach((obstacle) => obstacle.move(this.frameId));
     this.enemies.forEach((enemy) => enemy.move(this.frameId));
     this.checkCollisions();
+    this.checkEnemiesCollisions();
     this.player.draw(this.frameId);
+    this.obstacles.forEach((obstacle) => obstacle.draw(this.frameId));
     this.enemies.forEach((enemy) => enemy.draw(this.frameId));
     this.frameId = requestAnimationFrame(this.play.bind(this));
+    if (this.isOver) this.gameOver();
   }
 }

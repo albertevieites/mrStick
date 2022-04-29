@@ -22,15 +22,15 @@ class Player {
 
   // jump() method to calculate the speed of the player's jump
   jump() {
-    console.log("🤓 Weirdo's Jump!!!");
-    if (this.speedY === 0) this.speedY = - 23;
+    // console.log("🤓 Weirdo's Jump!!!");
+    if (this.speedY === 0) this.speedY = - 19;
   }
 
   // move()
   move(frameId) {
     this.y += this.speedY;
     if (this.y < this.ctx.canvas.height - this.height / 2 - 20)
-      this.speedY += 0.8; // this is gravity reducing the vertical speed
+      this.speedY += 0.5; // this is gravity reducing the vertical speed
     else {
       this.speedY = 0;
       this.y = this.ctx.canvas.height - this.height / 2 - 20;
@@ -59,8 +59,8 @@ class Player {
       this.spriteY,
       this.width,
       this.height,
-      this.x,
-      this.y,
+      this.x * 4,
+      this.y - 73,
       this.width / 2 - 20,
       this.height / 2 - 20
     );

@@ -1,16 +1,16 @@
-class Enemies {
+class Obstacles {
   constructor(ctx, x0, y0) {
     this.ctx = ctx;
-    this.width = 506;
-    this.height = 298;
+    this.width = 134;
+    this.height = 124;
     this.img = new Image();
-    this.img.src = "../images/flame-thrower.png";
-    this.speedX = -2;
+    this.img.src = "./images/saw.png";
+    this.speedX = -3;
     this.speedY = 0;
-    this.x = x0 - this.width + 800;
-    this.y = y0 - 80;
+    this.x = x0 - this.width + 200;
+    this.y = y0 - 86;
 
-    this.spriteColumns = 4;
+    this.spriteColumns = 3;
     this.spriteRows = 1;
 
     this.spriteCol = 0;
@@ -21,7 +21,7 @@ class Enemies {
 
   // move() add the values of the speed to move the enemies on the screen
   move(frameId) {
-    this.x += this.speedX;
+    this.x += this.speedX * 1.1;
     this.y += this.speedY;
   }
 
@@ -47,12 +47,11 @@ class Enemies {
       this.spriteX,
       this.spriteY,
       this.width,
-      this.height,
+      this.height / 2,
       this.x,
-      this.y - 50,
-      this.width * 0.8 - 200,
-      (this.height * 0.8 - 350)
+      this.y - 73,
+      this.width * 0.9 - 20,
+      (this.height * 0.9 - 20) / 2
     );
   }
 }
- 
