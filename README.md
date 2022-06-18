@@ -1,4 +1,4 @@
-<p align="center"># Mr. Stick</p>
+<h1 align="center"># Mr. Stick</h1>
 
 ![Mr. Stick's avatar](/images/avatar.png)
 
