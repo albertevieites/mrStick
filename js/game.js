@@ -5,8 +5,8 @@ class Game {
   background = null; // Default Background
   sounds = new Sounds();
   player = null; // Default Player
-  startButton = document.getElementById("start-button"); // Get class from button element
-  textSplash = document.querySelector("#startDiv");
+  startButton = document.querySelector('button'); // play() to update the game
+  textSplash = document.querySelector("#start-screen");
   obstacles = [];
   enemies = [];
   isOver = false;

@@ -11,23 +11,28 @@
   padding: 0;
 }
 
+html {
+  height: 100vh;
+}
+
 body {
-  background-image: url(../images/main.png);
-  background-size: cover;
   width: 100%;
+}
+
+img {
+  display: flex;
+  justify-content: center;        
+  height: 40vh;
 }
 
 /* Canvas Area*/
 #canvas {
   display: block;
-  /* border: 6px solid green; */
   margin: 7% auto;
-  /*width: 1000px;
-  height: 550px;*/
 }
 
 /* Text on Start Screen*/
-.game-text {
+.startText {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,7 +40,7 @@ body {
   position: fixed;
   margin: 27% 20% 25% 32%;
   padding: 0 50px;
-  color: white;
+  color: black;
 }
 
 h1 {
