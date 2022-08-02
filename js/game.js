@@ -6,7 +6,7 @@ class Game {
   sounds = new Sounds();
   player = null; // Default Player
   startButton = document.querySelector('button'); // play() to update the game
-  textSplash = document.querySelector("#start-screen");
+  textSplash = document.querySelector(".start-screen");
   obstacles = [];
   enemies = [];
   isOver = false;
@@ -15,7 +15,7 @@ class Game {
   // Get context and adjust screen to fill the window calling to setCanvasToFullScreen() method
   init() {
     if (this.ctx === null) {
-      this.ctx = document.getElementById("canvas").getContext("2d");
+      this.ctx = document.querySelector(".canvas").getContext("2d");
     }
 
     // Invoke different methods to initialize the game
