@@ -1,4 +1,5 @@
 class Game {
+  // GLOBAL VARIABLES
   screen = 0; // 0 = splash start, 1 = game, 2 = gameOver
   ctx = null; // Context
   frameId = null; // Value to initialize number of frame
@@ -8,9 +9,13 @@ class Game {
   startButton = document.querySelector("button"); // play() to update the game
   textSplash = document.querySelector(".start-screen");
   canvas = document.querySelector("canvas");
+  score = 0; // Score to display
   obstacles = [];
   enemies = [];
   isOver = false;
+
+  /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  */
 
   // init() INITIALIZATION METHOD
   // Get context and adjust screen to fill the window calling to setCanvasToFullScreen() method
@@ -125,20 +130,21 @@ class Game {
     });
   }
 
+  /* GAME OVER */
   gameOver() {
     cancelAnimationFrame(this.frameId);
     this.frameId = null;
     this.ctx.save();
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+    /* this.ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.font = "bold 64px 'Press Start 2P'";
+    this.ctx.font = "bold 64px sans-serif";
     this.ctx.fillText(
       `LOOOSER!!!`,
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
-    );
+    ); */
     this.sounds.play("gameOver");
     this.sounds.pause("main");
     this.ctx.restore();
@@ -154,6 +160,7 @@ class Game {
 
   // play() invoke the logic and order to load every method
   play() {
+    this.ctx.fillText('Score: ' + this.game.score,);
     this.background.move(this.frameId);
     this.background.draw(this.frameId);
     this.player.move(this.frameId);

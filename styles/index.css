@@ -59,6 +59,15 @@ span {
   box-shadow:8px 8px black;
 }
 
+.space-key {
+  padding: 2em;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
 .hidden {
   display: none;
 }
@@ -70,4 +79,11 @@ span {
   align-items: center;
 
   height: 100%;
+  background-color: hsla(30, 68%, 49%, 0.9);
+}
+
+#canvas {
+  border: 4px solid black;
+  box-shadow:1.5em 1.5em black;
+  border-radius: 15px;
 }
