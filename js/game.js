@@ -5,8 +5,9 @@ class Game {
   background = null; // Default Background
   sounds = new Sounds();
   player = null; // Default Player
-  startButton = document.querySelector('button'); // play() to update the game
+  startButton = document.querySelector("button"); // play() to update the game
   textSplash = document.querySelector(".start-screen");
+  canvas = document.querySelector("canvas");
   obstacles = [];
   enemies = [];
   isOver = false;
@@ -15,7 +16,7 @@ class Game {
   // Get context and adjust screen to fill the window calling to setCanvasToFullScreen() method
   init() {
     if (this.ctx === null) {
-      this.ctx = document.querySelector(".canvas").getContext("2d");
+      this.ctx = document.querySelector("canvas").getContext("2d");
     }
 
     // Invoke different methods to initialize the game
@@ -47,6 +48,7 @@ class Game {
     // When the button is clicked, it goes to 1 screen to play and remove startButton
     this.startButton.onclick = () => {
       this.textSplash.classList.add("hidden");
+      this.canvas.style.display="flex";
       this.screen = 1;
       this.start();
       this.startButton.remove();
