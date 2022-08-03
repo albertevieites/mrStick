@@ -9,9 +9,9 @@ class Game {
   startButton = document.querySelector("button"); // play() to update the game
   textSplash = document.querySelector(".start-screen");
   canvas = document.querySelector("canvas");
-  score = 0; // Score to display
   obstacles = [];
   enemies = [];
+  score = 0; // Score
   isOver = false;
 
   /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,6 @@ class Game {
     // When the button is clicked, it goes to 1 screen to play and remove startButton
     this.startButton.onclick = () => {
       this.textSplash.classList.add("hidden");
-      this.canvas.style.display="flex";
       this.screen = 1;
       this.start();
       this.startButton.remove();
@@ -135,7 +134,7 @@ class Game {
     cancelAnimationFrame(this.frameId);
     this.frameId = null;
     this.ctx.save();
-    /* this.ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
@@ -144,7 +143,7 @@ class Game {
       `LOOOSER!!!`,
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
-    ); */
+    );
     this.sounds.play("gameOver");
     this.sounds.pause("main");
     this.ctx.restore();
@@ -160,7 +159,6 @@ class Game {
 
   // play() invoke the logic and order to load every method
   play() {
-    this.ctx.fillText('Score: ' + this.game.score,);
     this.background.move(this.frameId);
     this.background.draw(this.frameId);
     this.player.move(this.frameId);
@@ -173,6 +171,7 @@ class Game {
     this.player.draw(this.frameId);
     this.obstacles.forEach((obstacle) => obstacle.draw(this.frameId));
     this.enemies.forEach((enemy) => enemy.draw(this.frameId));
+
     this.frameId = requestAnimationFrame(this.play.bind(this));
     if (this.isOver) this.gameOver();
   }
