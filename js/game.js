@@ -2,20 +2,24 @@ class Game {
   // GLOBAL VARIABLES
   screen = 0; // 0 = splash start, 1 = game, 2 = gameOver
   ctx = null; // Context
-  frameId = null; // Value to initialize number of frame
-  background = null; // Default Background
-  sounds = new Sounds();
+
   player = null; // Default Player
+  obstacles = []; // Obstacles
+  enemies = []; // Enemies
+  background = null; // Default Background
+
+  frameId = null; // Value to initialize number of frame
+  score = 0; // Score
+  sounds = new Sounds(); // Music and sound effects of the game
+
   startButton = document.querySelector("button"); // play() to update the game
   textSplash = document.querySelector(".start-screen");
   canvas = document.querySelector("canvas");
-  obstacles = [];
-  enemies = [];
-  score = 0; // Score
+
   isOver = false;
 
   /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  */
+   */
 
   // init() INITIALIZATION METHOD
   // Get context and adjust screen to fill the window calling to setCanvasToFullScreen() method
@@ -129,6 +133,19 @@ class Game {
     });
   }
 
+  // Score
+  scoreUpdate() {
+    if (this.frameId !== 0 && this.frameId % 20 === 0) this.score++;
+  }
+
+  drawScore() {
+    this.ctx.save();
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "normal 24px 'Helvetica'";
+    this.ctx.fillText(`SCORE: ${this.score}`, 30, 50);
+    this.ctx.restore();
+  }
+
   /* GAME OVER */
   gameOver() {
     cancelAnimationFrame(this.frameId);
@@ -171,7 +188,8 @@ class Game {
     this.player.draw(this.frameId);
     this.obstacles.forEach((obstacle) => obstacle.draw(this.frameId));
     this.enemies.forEach((enemy) => enemy.draw(this.frameId));
-
+    this.drawScore();
+    this.scoreUpdate();
     this.frameId = requestAnimationFrame(this.play.bind(this));
     if (this.isOver) this.gameOver();
   }
