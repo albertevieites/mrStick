@@ -155,14 +155,14 @@ class Game {
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.font = "bold 64px sans-serif";
+    this.ctx.font = "bold 6rem Helvetica";
     this.ctx.fillText(
-      `LOOOSER!!!`,
+      `LOOOOOSER!!!`,
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
     );
     this.sounds.play("gameOver");
-    this.sounds.pause("main");
+    this.sounds.pause("song");
     this.ctx.restore();
   }
 
@@ -171,7 +171,7 @@ class Game {
     // reseting & refreshing background & player
     this.background = new Background(this.ctx);
     this.player = new Player(this.ctx);
-    this.sounds.play("main");
+    this.sounds.play("song");
   }
 
   // play() invoke the logic and order to load every method

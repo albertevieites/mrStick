@@ -1,12 +1,12 @@
 class Sounds {
-  main = new Audio("../sounds/main.mp3")
-  gameOver = new Audio ("../sounds/game-over.wav")
+  song = new Audio("../sounds/song.mp3");
+  gameOver = new Audio("../sounds/game-over.wav");
 
-  play (sound) {
+  play(sound) {
     this[sound].play();
   }
 
-  pause (sound) {
+  pause(sound) {
     this[sound].pause();
   }
 }
