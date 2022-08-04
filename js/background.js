@@ -2,6 +2,7 @@ class Background {
     constructor(ctx) {
         this.ctx = ctx;
 
+
         this.backgroundFront = {
             img: new Image(),
             width: this.ctx.canvas.width,
