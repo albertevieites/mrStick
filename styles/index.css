@@ -87,10 +87,6 @@ span {
   background-color: hsla(30, 68%, 49%, 0.9);
 }
 
-.canvas__button {
-  padding-top: 4em;
-}
-
 #canvas {
   border: 4px solid black;
   box-shadow:-1.5em -1.5em black;
