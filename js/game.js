@@ -15,7 +15,6 @@ class Game {
   startButton = document.querySelector(".start__button"); // play() to update the game
   textSplash = document.querySelector(".start-screen");
   canvas = document.querySelector("canvas");
-  canvasButton = document.querySelector(".canvas__button");
 
   isOver = false;
 
@@ -53,8 +52,6 @@ class Game {
         this.frameId = window.requestAnimationFrame(this.play.bind(this));
         break;
       case 2:
-        this.reset();
-        this.displayRestart();
         break;
       default:
         console.log("This screen code is unknown!");
@@ -67,20 +64,9 @@ class Game {
     // When the button is clicked, it goes to 1 screen to play and remove startButton
     this.startButton.onclick = () => {
       this.textSplash.classList.add("hidden");
-      this.canvasButton.classList.add("hidden");
       this.screen = 1;
       this.start();
       this.startButton.remove();
-    };
-  }
-
-  // Restart Canvas Button
-  displayRestart() {
-    this.canvasButton.onclick = () => {
-      this.canvasButton.classList.add("hidden");
-      this.screen = 1;
-      this.start();
-      this.canvasButton.remove();
     };
   }
 
@@ -175,7 +161,6 @@ class Game {
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
     );
-    this.canvasButton.classList.remove("hidden");
     this.sounds.play("gameOver");
     this.sounds.pause("song");
     this.ctx.restore();
