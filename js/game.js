@@ -13,6 +13,7 @@ class Game {
   sounds = new Sounds(); // Music and sound effects of the game
 
   startButton = document.querySelector(".start__button"); // play() to update the game
+  canvasButton = document.querySelector(".canvas__button"); // restart() to restart the game
   textSplash = document.querySelector(".start-screen");
   canvas = document.querySelector("canvas");
 
@@ -52,6 +53,9 @@ class Game {
         this.frameId = window.requestAnimationFrame(this.play.bind(this));
         break;
       case 2:
+        this.reset();
+        // bind method to reference to Game class to link with callback play method which is holding on at the event loop(fridge)
+        this.frameId = window.requestAnimationFrame(this.play.bind(this));
         break;
       default:
         console.log("This screen code is unknown!");
@@ -67,6 +71,7 @@ class Game {
       this.screen = 1;
       this.start();
       this.startButton.remove();
+      this.canvasButton.classList.add("hidden");
     };
   }
 
@@ -146,14 +151,16 @@ class Game {
     this.ctx.restore();
   }
 
+  // Restart Button
+
   /* GAME OVER */
   gameOver() {
     cancelAnimationFrame(this.frameId);
     this.frameId = null;
     this.ctx.save();
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+    this.ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-    this.ctx.fillStyle = "white";
+    this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
     this.ctx.font = "bold 6rem Helvetica";
     this.ctx.fillText(
@@ -161,9 +168,17 @@ class Game {
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
     );
+    this.canvasButton.classList.remove("hidden");
     this.sounds.play("gameOver");
     this.sounds.pause("song");
     this.ctx.restore();
+    this.canvasButton.addEventListener("click", () => {
+      this.screen = 1;
+      this.canvasButton.remove();
+      this.ctx.fillStyle = "rgba(255, 255, 255, 0)";
+      this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+      this.init();
+    });
   }
 
   // reset() to change between screens
