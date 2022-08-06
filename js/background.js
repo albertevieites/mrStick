@@ -9,7 +9,7 @@ class Background {
             height: this.ctx.canvas.height,
             x: 0,
             y: 0,
-            vx: -5,
+            vx: -7,
             vy: 0,
         };
 

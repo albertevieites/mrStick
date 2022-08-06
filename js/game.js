@@ -14,6 +14,7 @@ class Game {
 
   startButton = document.querySelector(".start__button"); // play() to update the game
   canvasButton = document.querySelector(".canvas__button"); // restart() to restart the game
+
   textSplash = document.querySelector(".start-screen");
   canvas = document.querySelector("canvas");
 
@@ -53,9 +54,6 @@ class Game {
         this.frameId = window.requestAnimationFrame(this.play.bind(this));
         break;
       case 2:
-        this.reset();
-        // bind method to reference to Game class to link with callback play method which is holding on at the event loop(fridge)
-        this.frameId = window.requestAnimationFrame(this.play.bind(this));
         break;
       default:
         console.log("This screen code is unknown!");
@@ -133,14 +131,10 @@ class Game {
       ) {
         // console.log(" Enemy 🤯 Colision!!!");
         this.enemies.splice(index, 1);
+        this.score++;
         // this.isOver = true;
       }
     });
-  }
-
-  // Score
-  scoreUpdate() {
-    if (this.frameId !== 0 && this.frameId % 20 === 0) this.score++;
   }
 
   drawScore() {
@@ -172,13 +166,11 @@ class Game {
     this.sounds.play("gameOver");
     this.sounds.pause("song");
     this.ctx.restore();
-    this.canvasButton.addEventListener("click", () => {
+    this.canvasButton.onclick = () => {
       this.screen = 1;
+      this.start();
       this.canvasButton.remove();
-      this.ctx.fillStyle = "rgba(255, 255, 255, 0)";
-      this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-      this.init();
-    });
+    };
   }
 
   // reset() to change between screens
@@ -204,7 +196,6 @@ class Game {
     this.obstacles.forEach((obstacle) => obstacle.draw(this.frameId));
     this.enemies.forEach((enemy) => enemy.draw(this.frameId));
     this.drawScore();
-    this.scoreUpdate();
     this.frameId = requestAnimationFrame(this.play.bind(this));
     if (this.isOver) this.gameOver();
   }
