@@ -169,7 +169,7 @@ class Game {
     this.canvasButton.onclick = () => {
       this.screen = 1;
       this.start();
-      this.canvasButton.remove();
+      this.canvasButton.classList.add("hidden");
     };
   }
 
@@ -179,6 +179,11 @@ class Game {
     this.background = new Background(this.ctx);
     this.player = new Player(this.ctx);
     this.sounds.play("song");
+
+    this.obstacles = [];
+    this.enemies = [];
+    this.score = 0;
+    this.isOver = false;
   }
 
   // play() invoke the logic and order to load every method
