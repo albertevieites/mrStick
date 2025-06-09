@@ -4,7 +4,7 @@ class Obstacles {
     this.width = 134;
     this.height = 124;
     this.img = new Image();
-    this.img.src = "./images/saw.png";
+    this.img.src = "/images/enemies/saw.png";
     this.speedX = -3;
     this.speedY = 0;
     this.x = x0 - this.width + 200;
@@ -27,7 +27,7 @@ class Obstacles {
 
   // draw() drawing the enemies
   setSpriteFrame(frameNumber) {
-    if (frameNumber % 6 === 0) {
+    if (frameNumber % 10 === 0) {
       this.spriteCol += 1;
 
       if (this.spriteCol >= this.spriteColumns) {
