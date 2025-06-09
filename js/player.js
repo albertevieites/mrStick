@@ -1,15 +1,13 @@
 class Player {
   constructor(ctx) {
-    this.ctx = ctx; // Player's environment
+    this.ctx = ctx;
     this.width = 215;
     this.height = 250;
-    this.x = 15; // Horizontal position of the player
-    this.y = this.ctx.canvas.height - this.height / 2 - 20; // subtract canvas height minus player's height to get vertical position of the player
-    //this.spritesCount = 6; // Number of movements of the player
-    //this.spriteNumber = 0; // Initialize sprite
+    this.x = 15;
+    this.y = this.ctx.canvas.height - this.height / 2 - 20;
     this.img = new Image();
-    this.img.src = "../images/player.png";
-    this.speedY = 0; // Player's speed
+    this.img.src = "/images/player/player.png";
+    this.speedY = 0;
 
     this.spriteColumns = 6;
     this.spriteRows = 1;
@@ -23,7 +21,7 @@ class Player {
   // jump() method to calculate the speed of the player's jump
   jump() {
     // console.log("🤓 Weirdo's Jump!!!");
-    if (this.speedY === 0) this.speedY = - 19;
+    if (this.speedY === 0) this.speedY = -19;
   }
 
   // move()
@@ -38,7 +36,7 @@ class Player {
   }
 
   setSpriteFrame(frameNumber) {
-    if (frameNumber % 6 === 0) {
+    if (frameNumber % 5 === 0) {
       this.spriteCol += 1;
 
       if (this.spriteCol >= this.spriteColumns) {

@@ -4,7 +4,7 @@ class Enemies {
     this.width = 506;
     this.height = 298;
     this.img = new Image();
-    this.img.src = "../images/flame-thrower.png";
+    this.img.src = "/images/enemies/flame-thrower.png";
     this.speedX = -3;
     this.speedY = 0;
     this.x = x0 - this.width + 800;
@@ -27,7 +27,7 @@ class Enemies {
 
   // draw() drawing the enemies
   setSpriteFrame(frameNumber) {
-    if (frameNumber % 6 === 0) {
+    if (frameNumber % 8 === 0) {
       this.spriteCol += 1;
 
       if (this.spriteCol >= this.spriteColumns) {

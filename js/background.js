@@ -2,7 +2,6 @@ class Background {
     constructor(ctx) {
         this.ctx = ctx;
 
-
         this.backgroundFront = {
             img: new Image(),
             width: this.ctx.canvas.width,
@@ -13,7 +12,7 @@ class Background {
             vy: 0,
         };
 
-        this.backgroundFront.img.src = "../images/bk_conveyor.png";
+        this.backgroundFront.img.src = "/images/background/bk_conveyor.png";
 
         this.backgroundParallax1 = {
             img: new Image(),
@@ -25,7 +24,7 @@ class Background {
             vy: 0,
         };
 
-        this.backgroundParallax1.img.src = "../images/bk_conveyor_back.png";
+        this.backgroundParallax1.img.src = "/images/background/bk_conveyor_back.png";
 
         this.backgroundParallax2 = {
             img: new Image(),
@@ -37,7 +36,7 @@ class Background {
             vy: 0,
         };
 
-        this.backgroundParallax2.img.src = "../images/bk_factory.png";
+        this.backgroundParallax2.img.src = "/images/background/bk_factory.png";
 
         this.backgroundFar = {
             img: new Image(),
@@ -49,7 +48,7 @@ class Background {
             vy: 0,
         };
 
-        this.backgroundFar.img.src = "../images/bk_sky.png";
+        this.backgroundFar.img.src = "/images/background/bk_sky.png";
     }
 
     init() {
@@ -68,7 +67,9 @@ class Background {
         this.backgroundFar.x += this.backgroundFar.vx;
         this.backgroundParallax2.x += this.backgroundParallax2.vx;
         this.backgroundParallax1.x += this.backgroundParallax1.vx;
-        this.backgroundFront.x += this.backgroundFront.vx;
+        this.backgroundFront.x =
+            (this.backgroundFront.x + this.backgroundFront.vx) %
+            this.backgroundFront.width;
 
         if (this.backgroundFar.x + this.backgroundFar.width <= 0)
             this.backgroundFar.x = 0;
@@ -76,8 +77,6 @@ class Background {
             this.backgroundParallax2.x = 0;
         if (this.backgroundParallax1.x + this.backgroundParallax1.width <= 0)
             this.backgroundParallax1.x = 0;
-        if (this.backgroundFront.x + this.backgroundFront.width <= 0)
-            this.backgroundFront.x = 0;
     }
 
     increaseVelocity(frameNumber) {
