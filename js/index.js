@@ -1,4 +1,4 @@
-// <reference path="game.js" />
+import Game from "./game.js";
 
 console.log("JS Loaded in the client");
 

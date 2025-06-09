@@ -1,4 +1,4 @@
-class Enemies {
+export class Enemies {
   constructor(ctx, x0, y0) {
     this.ctx = ctx;
     this.width = 506;

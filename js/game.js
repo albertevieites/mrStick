@@ -1,4 +1,9 @@
-class Game {
+import { Sounds } from './sounds.js';
+import { Player } from './player.js';
+import { Background } from './background.js';
+import { Obstacles } from './obstacles.js';
+import { Enemies } from './enemies.js';
+export class Game {
   // GLOBAL VARIABLES
   screen = 0; // 0 = splash start, 1 = game, 2 = gameOver
   ctx = null; // Context
