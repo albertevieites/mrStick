@@ -1,7 +1,7 @@
 # Mr. Stick
 
 <p align="center">
-<img src="./images/avatar.png" alt="Avatar" style="width:250px;height:250px">
+<img src="public/images/ui/avatar.png" alt="Avatar" style="width:250px;height:250px">
 </p>
 
 ## Overview
