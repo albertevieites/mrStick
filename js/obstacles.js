@@ -1,4 +1,4 @@
-class Obstacles {
+export class Obstacles {
   constructor(ctx, x0, y0) {
     this.ctx = ctx;
     this.width = 134;
