@@ -1,3 +1,5 @@
+import { updateSpriteAnimation } from "./utils.js";
+
 export class Obstacles {
   constructor(ctx, x0, y0) {
     this.ctx = ctx;
@@ -17,6 +19,9 @@ export class Obstacles {
     this.spriteRow = 0;
     this.spriteX = 0;
     this.spriteY = 0;
+
+    // Variable para animación ping-pong
+    this.spriteDirection = 1; // 1 = hacia adelante, -1 = hacia atrás
   }
 
   // move() add the values of the speed to move the enemies on the screen
@@ -27,16 +32,7 @@ export class Obstacles {
 
   // draw() drawing the enemies
   setSpriteFrame(frameNumber) {
-    if (frameNumber % 10 === 0) {
-      this.spriteCol += 1;
-
-      if (this.spriteCol >= this.spriteColumns) {
-        this.spriteCol = 0;
-      }
-
-      this.spriteX = this.width * this.spriteCol;
-      this.spriteY = this.height * this.spriteRow;
-    }
+    updateSpriteAnimation(this, frameNumber, 10);
   }
 
   // draw() to draw and draw the movement of the player
