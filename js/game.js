@@ -1,8 +1,8 @@
-import { Sounds } from './sounds.js';
-import { Player } from './player.js';
-import { Background } from './background.js';
-import { Obstacles } from './obstacles.js';
-import { Enemies } from './enemies.js';
+import { Background } from "./background.js";
+import { Enemies } from "./enemies.js";
+import { Obstacles } from "./obstacles.js";
+import { Player } from "./player.js";
+import { Sounds } from "./sounds.js";
 export class Game {
   // GLOBAL VARIABLES
   screen = 0; // 0 = splash start, 1 = game, 2 = gameOver
@@ -134,10 +134,24 @@ export class Game {
         this.player.y + (this.player.height - 79) >= enemy.y &&
         this.player.y <= enemy.y + enemy.height
       ) {
-        // console.log(" Enemy 🤯 Colision!!!");
-        this.enemies.splice(index, 1);
-        this.score++;
-        // this.isOver = true;
+        // Determinar si es salto encima o colisión lateral
+        const playerBottom = this.player.y + (this.player.height - 79);
+        const enemyTop = enemy.y;
+        const isJumpingDown = this.player.speedY > 0; // Está cayendo
+        const isFromAbove = playerBottom - enemyTop < 20; // Colisión desde arriba
+
+        if (isJumpingDown && isFromAbove) {
+          // ¡Salto exitoso encima del enemigo!
+          console.log("🎯 Enemy defeated by jumping!");
+          this.enemies.splice(index, 1);
+          this.score++;
+          // Hacer que el jugador rebote un poco
+          this.player.speedY = -8;
+        } else {
+          // Colisión lateral o desde abajo = Game Over
+          console.log("💀 Enemy collision - Game Over!");
+          this.isOver = true;
+        }
       }
     });
   }

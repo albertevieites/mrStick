@@ -1,3 +1,5 @@
+import { updateSpriteAnimation } from "./utils.js";
+
 export class Player {
   constructor(ctx) {
     this.ctx = ctx;
@@ -16,6 +18,9 @@ export class Player {
     this.spriteRow = 0;
     this.spriteX = 0;
     this.spriteY = 0;
+
+    // Variable para animación ping-pong
+    this.spriteDirection = 1; // 1 = hacia adelante, -1 = hacia atrás
   }
 
   // jump() method to calculate the speed of the player's jump
@@ -36,16 +41,7 @@ export class Player {
   }
 
   setSpriteFrame(frameNumber) {
-    if (frameNumber % 5 === 0) {
-      this.spriteCol += 1;
-
-      if (this.spriteCol >= this.spriteColumns) {
-        this.spriteCol = 0;
-      }
-
-      this.spriteX = this.width * this.spriteCol;
-      this.spriteY = this.height * this.spriteRow;
-    }
+    updateSpriteAnimation(this, frameNumber, 5);
   }
 
   // draw() to draw and draw the movement of the player
