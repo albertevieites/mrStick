@@ -1,7 +1,7 @@
 {
   "name": "mr-stick-vite",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "engines": {
     "node": ">=22.0.0"
@@ -12,15 +12,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^8.0.7"
+    "vite": "^8.0.16"
   },
-  "pnpm": {
-    "overrides": {
-      "rollup": "^4.59.0",
-      "picomatch": "^4.0.4"
-    },
-    "ignoredBuiltDependencies": [
-      "esbuild"
-    ]
-  }
+  "packageManager": "pnpm@11.7.0"
 }
