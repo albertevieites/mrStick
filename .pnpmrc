@@ -1,0 +1,4 @@
+# Forzar resoluciones seguras en el árbol de dependencias
+overrides.rollup=^4.59.0
+overrides.picomatch=^4.0.4
+overrides.esbuild=0.28.1
