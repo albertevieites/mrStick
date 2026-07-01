@@ -1,0 +1,7 @@
+packages:
+  - '**'
+
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - vite@8.1.2
