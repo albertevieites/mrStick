@@ -12,10 +12,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^8.1.2"
-  },
-  "packageManager": "pnpm@11.9.0",
-  "overrides": {
+    "vite": "^8.1.2",
     "esbuild": "^0.28.1"
-  }
+  },
+  "packageManager": "pnpm@11.9.0"
 }
